@@ -1,0 +1,27 @@
+name: iOS Build & Test
+
+on:
+  push:
+    branches: development
+  pull_request:
+    branches: development
+
+jobs:
+  build:
+    runs-on: macOS-latest
+    steps:
+      # Шаг 1: Получаем код из репозитория
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Clean Derived Data
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+      - name: Build and Test
+        run: |
+          xcodebuild \
+            -workspace FoodOrderApp.xcworkspace \  # Если у вас workspace, иначе укажите -project FoodOrderApp.xcodeproj
+            -scheme FoodOrderApp \                   # Укажите название схемы сборки проекта
+            -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+            clean test
+
