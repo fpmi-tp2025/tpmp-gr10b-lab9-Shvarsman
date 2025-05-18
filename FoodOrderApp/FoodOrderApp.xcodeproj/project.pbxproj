@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,16 +26,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		9D1AA2672DD9F77A00CD4662 /* FoodOrderApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FoodOrderApp;
-			sourceTree = "<group>";
-		};
-		9D1AA2A12DDA057900CD4662 /* FoodOrderAppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = FoodOrderAppTests;
-			sourceTree = "<group>";
-		};
+		9D1AA2672DD9F77A00CD4662 /* FoodOrderApp */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = FoodOrderApp; sourceTree = "<group>"; };
+		9D1AA2A12DDA057900CD4662 /* FoodOrderAppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = FoodOrderAppTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +136,7 @@
 				};
 			};
 			buildConfigurationList = 9D1AA2602DD9F77A00CD4662 /* Build configuration list for PBXProject "FoodOrderApp" */;
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -155,7 +148,6 @@
 			packageReferences = (
 				9D1AA27C2DD9F86400CD4662 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 9D1AA2662DD9F77A00CD4662 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
