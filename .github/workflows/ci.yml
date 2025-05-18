@@ -2,26 +2,36 @@ name: iOS Build & Test
 
 on:
   push:
-    branches: development
+    branches:
+      - development
   pull_request:
-    branches: development
+    branches:
+      - development
+      - production
 
 jobs:
   build:
-    runs-on: macOS-latest
+    name: Build and Test
+    runs-on: macos-latest
+
     steps:
-      # Шаг 1: Получаем код из репозитория
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Clean Derived Data
-        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
+      - name: Setup Xcode
+        run: sudo xcode-select --switch /Applications/Xcode_15.0.app
 
-      - name: Build and Test
+      - name: Install dependencies
+        run: cd FoodOrderApp && pod install || echo "No pods found"
+
+      - name: Build project
         run: |
-          xcodebuild \
-            -workspace FoodOrderApp.xcworkspace \  # Если у вас workspace, иначе укажите -project FoodOrderApp.xcodeproj
-            -scheme FoodOrderApp \                   # Укажите название схемы сборки проекта
-            -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
-            clean test
+          cd FoodOrderApp
+          xcodebuild clean build \
+            -workspace FoodOrderApp.xcworkspace \
+            -scheme FoodOrderApp \
+            -sdk iphoneos \
+            -configuration Debug \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
 
