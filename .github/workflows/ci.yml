@@ -11,27 +11,18 @@ on:
 
 jobs:
   build:
-    name: Build and Test
-    runs-on: macos-latest
-    
+    runs-on: macOS-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Setup Xcode
-        run: sudo xcode-select --switch /Applications/Xcode_15.0.app
+      - name: Clean Derived Data
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
 
-      - name: Install dependencies
-        run: cd FoodOrderApp && pod install || echo "No pods found"
-
-      - name: Build project
+      - name: Build and Test
         run: |
-          cd FoodOrderApp
-          xcodebuild clean build \
+          xcodebuild \
             -project FoodOrderApp.xcodeproj
-            -scheme FoodOrderApp \
-            -sdk iphoneos \
-            -configuration Debug \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO
-
+            -scheme FoodOrderApp \                   
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            clean test
