@@ -13,7 +13,7 @@ jobs:
   build:
     name: Build and Test
     runs-on: macos-latest
-
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
         run: |
           cd FoodOrderApp
           xcodebuild clean build \
-            -workspace FoodOrderApp.xcworkspace \
+            -project FoodOrderApp.xcodeproj
             -scheme FoodOrderApp \
             -sdk iphoneos \
             -configuration Debug \
